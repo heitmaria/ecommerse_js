@@ -256,11 +256,11 @@ function enviarCompra(e) {
         btn.value = 'Send Email';
         alert(JSON.stringify(err));
       });
-  };
 
   const spinner = document.querySelector('#spinner')
   spinner.classList.add('d-flex')
-  finalizarspinner
+  spinner.classList.remove('d-none')
+
   setTimeout(() => {
     spinner.classList.remove('d-flex')
     spinner.classList.add('d-none')
@@ -279,4 +279,6 @@ function enviarCompra(e) {
   }, 3000)
 }
 localStorage.clear()
+
+}
 
