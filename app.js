@@ -175,12 +175,12 @@ const mostrarCarrito = () => {
   }
 
   if (carrito.length === 0) {
-    console.log("nada");
+    console.log("Nada");
     modalBody.innerHTML = `
-    <p class="texto" >¡Aun no agregaste nada!</p>
+    <p class="text-center text-primary parrafo">¡Aun no agregaste nada!</p>
     `;
   } else {
-    console.log("algo");
+    console.log("Algo");
   }
   carritoContenedor.textContent = carrito.length;
 
@@ -199,8 +199,8 @@ function guardarStorage() {
 }
 
 function eliminarProducto(id) {
-  const articuloId = id;
-  carrito = carrito.filter((articulo) => articulo.id !== articuloId);
+  const juegoId = id;
+  carrito = carrito.filter((juego) => juego.id !== juegoId);
   mostrarCarrito();
 }
 function procesarPedido() {
@@ -227,35 +227,35 @@ function procesarPedido() {
   );
 }
 
-function enviarCompra(e) {
+function enviarCompra(e){
   e.preventDefault()
-  const to_name = document.querySelector('#to_name').value
+  const cliente = document.querySelector('#cliente').value
   const email = document.querySelector('#correo').value
 
-  if (email === '' || cliente == '') {
+  if(email === '' || cliente == ''){
     Swal.fire({
       title: "¡Debes completar tu email y nombre!",
       text: "Rellena el formulario",
       icon: "error",
       confirmButtonText: "Aceptar",
-    })
+  })
   } else {
 
     const btn = document.getElementById('button');
 
-    btn.value = 'Sending...';
+    btn.value = 'enviando...';
 
     const serviceID = 'default_service';
     const templateID = 'template_4kjw7a5';
 
     emailjs.sendForm(serviceID, templateID, this)
-      .then(() => {
-        btn.value = 'Send Email';
-        alert('Sent!');
-      }, (err) => {
-        btn.value = 'Send Email';
-        alert(JSON.stringify(err));
-      });
+    .then(() => {
+      btn.value = 'Finalizar compra';
+      alert('Correo enviado!');
+    }, (err) => {
+      btn.value = 'Finalizar compra';
+      alert(JSON.stringify(err));
+    });
 
   const spinner = document.querySelector('#spinner')
   spinner.classList.add('d-flex')
